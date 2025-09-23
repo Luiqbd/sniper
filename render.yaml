@@ -1,0 +1,80 @@
+services:
+  - type: web
+    name: crypto-sniper-bot
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: PYTHONPATH
+        value: /opt/render/project/src
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DRY_RUN_MODE
+        value: "false"
+      # Web3 Configuration
+      - key: BASE_RPC_URL
+        sync: false
+      - key: BASE_WSS_URL
+        sync: false
+      - key: PRIVATE_KEY
+        sync: false
+      - key: WALLET_ADDRESS
+        sync: false
+      # Telegram Configuration
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      # API Keys
+      - key: BASESCAN_API_KEY
+        sync: false
+      - key: COINGECKO_API_KEY
+        sync: false
+      # Trading Configuration
+      - key: MAX_MEMECOIN_INVESTMENT_USD
+        value: "8"
+      - key: MEMECOIN_PROFIT_TARGET
+        value: "2.0"
+      - key: MEMECOIN_STOP_LOSS
+        value: "0.7"
+      - key: ALTCOIN_MAX_INVESTMENT_USD
+        value: "100"
+      - key: ALTCOIN_PROFIT_TARGET
+        value: "1.2"
+      - key: ALTCOIN_STOP_LOSS
+        value: "0.9"
+      - key: MIN_LIQUIDITY_ETH
+        value: "0.01"
+      - key: MIN_HOLDERS
+        value: "50"
+      # Gas Configuration
+      - key: MAX_GAS_PRICE_GWEI
+        value: "50"
+      - key: GAS_LIMIT_SWAP
+        value: "300000"
+      - key: SLIPPAGE_TOLERANCE
+        value: "0.05"
+      # DEX Configuration
+      - key: UNISWAP_V3_ROUTER
+        value: "0x2626664c2603336E57B271c5C0b26F421741e481"
+      - key: BASESWAP_ROUTER
+        value: "0x327Df1E6de05895d2ab08513aaDD9313Fe505d86"
+      - key: CAMELOT_ROUTER
+        value: "0xc873fEcbd354f5A56E00E710B90EF4201db2448d"
+      # Security Configuration
+      - key: HONEYPOT_CHECK_ENABLED
+        value: "true"
+      - key: CONTRACT_VERIFICATION_ENABLED
+        value: "true"
+      - key: MAX_RISK_SCORE
+        value: "0.3"
+      # Monitoring Configuration
+      - key: HEALTH_CHECK_INTERVAL_MINUTES
+        value: "5"
+      - key: ALERT_COOLDOWN_MINUTES
+        value: "10"
+      - key: PORTFOLIO_REBALANCE_HOURS
+        value: "24"
